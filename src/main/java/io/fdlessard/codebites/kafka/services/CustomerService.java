@@ -1,4 +1,4 @@
-package io.fdlessard.codebites.kafka;
+package io.fdlessard.codebites.kafka.services;
 
 import io.fdlessard.codebites.kafka.model.Customer;
 import io.fdlessard.codebites.kafka.repositories.CustomerRepository;
