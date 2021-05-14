@@ -1,7 +1,7 @@
 package io.fdlessard.codebites.kafka.services;
 
-import io.fdlessard.codebites.kafka.model.Customer;
-import io.fdlessard.codebites.kafka.repositories.CustomerRepository;
+import io.fdlessard.codebites.kafka.model.Address;
+import io.fdlessard.codebites.kafka.repositories.AddressRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,25 +11,25 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @AllArgsConstructor
 @Service
-public class CustomerService {
+public class AddressService {
 
   public static final String TOPIC_NAME = "test";
   public static final String GROUP_ID = "group_id";
 
-  private CustomerRepository customerRepository;
+  private AddressRepository addressRepository;
 
   private KafkaTemplate<String, Object> kafkaTemplate;
 
-  public Customer createCustomer(Customer customer) {
+  public Address createAddress(Address address) {
 
-    Customer createdCustomer = customerRepository.save(customer);
-    kafkaTemplate.send(TOPIC_NAME, customer);
-    return createdCustomer;
+    Address createdAddress = addressRepository.save(address);
+    kafkaTemplate.send(TOPIC_NAME, address);
+    return createdAddress;
   }
 
   @KafkaListener(topics = TOPIC_NAME, groupId = GROUP_ID)
-  public void consume(Object customer) {
-    logger.info(String.format("Customer Message received -> %s", customer));
+  public void consume(Object address) {
+    logger.info(String.format("Address Message received -> %s", address));
   }
 
 }

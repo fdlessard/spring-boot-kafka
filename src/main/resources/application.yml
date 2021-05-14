@@ -57,8 +57,8 @@ spring:
     change-log: classpath:/db/changelog/db.changelog-master.yaml
 
   kafka:
+    bootstrap-servers: localhost:9092
     consumer:
-      bootstrap-servers: localhost:9092
       group-id: group-id
       auto-offset-reset: earliest
       properties:
@@ -69,6 +69,5 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
     producer:
-      bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.LongSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
